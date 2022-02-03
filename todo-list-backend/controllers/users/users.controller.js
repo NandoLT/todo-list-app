@@ -13,9 +13,28 @@ class UsersController {
      */
     async register(req, res, next) {
         try {
+            const userData = req.body;
+            const { username, email } = userData;
             
+            const userEmail = await Users.findOne({ email });
+            const userName = await Users.findOne({ username });
+
+            if (!!userEmail && !!userName) {
+                const error = new Error('Email or Username already exists');
+
+                res.status(500).json({ message: error.message });
+                return;
+            } else {
+                const user = new Users(userData);
+
+                user.password = await user.hashPassword(user.password);
+                await user.save()
+
+                res.status(200).json({ result: 'user created successfully' });
+            }
+
         } catch (error) {
-            
+            res.status(500).json({ message: error.message });
         }
     }
 
