@@ -2,6 +2,7 @@
 
 //local requires
 const { Users } = require('../../models');
+const { Sign } = require('../../libs/jwtAuth');
 
 // libraries requires
 const mongoose = require('mongoose');
@@ -43,9 +44,27 @@ class UsersController {
      */
     async login(req, res, next) {
         try {
-            
+            const { username, password } = req.body;
+            const userCredentials = await Users.findOne({ username });
+
+            if (!userCredentials || !(await userCredentials.comparePassword(password))) {
+                const error = new Error('Invalid credentials');
+                res.status(401).json({ message: error.message });
+                return;
+            } 
+
+            Sign(userCredentials._id, '2h', (error, jwtToken) => {
+                if (error) {
+                    res.status(500).json({ message: error.message });
+                }
+                res.json({
+                    msg: 'Token Created',
+                    token: jwtToken,       
+                })
+            });
+
         } catch (error) {
-            
+            res.status(500).json({ message: error.message })
         }
     }
 

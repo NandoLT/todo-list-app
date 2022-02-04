@@ -12,6 +12,12 @@ const { UsersController } = require('../controllers');
  */
 router.post('/register', UsersController.register);
 
+/**
+ * POST /login
+ * Login user
+ */
+router.post('/login', UsersController.login);
+
 
 module.exports = router;
 
