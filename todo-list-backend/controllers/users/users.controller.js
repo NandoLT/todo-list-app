@@ -73,7 +73,8 @@ class UsersController {
      */
     async updateUser(req, res, next) {
         try {
-            
+            const dataToUpdate = req.body;
+            //Waitinf for control panel from front
         } catch (error) {
             
         }
@@ -84,7 +85,7 @@ class UsersController {
      */
     async updatePasswd(req, res, next) {
         try {
-            
+            //Waitinf for control panel from front
         } catch (error) {
             
         }
@@ -95,7 +96,7 @@ class UsersController {
      */
     async deleteUser(req, res, next) {
         try {
-            
+            //Waitinf for control panel from front
         } catch (error) {
             
         }
@@ -104,6 +105,7 @@ class UsersController {
     /**
      * logout - recoverpassword - userimag(post)
      */
+    //Waitinf for control panel from front
 }
 
 module.exports = new UsersController();
