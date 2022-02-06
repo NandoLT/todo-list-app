@@ -23,26 +23,24 @@ function App({ isInitiallyLogged }) {
         <div className="App">
             <Routes>
 
-                <PrivateRoute 
+                {/* <PrivateRoute 
                     exact path="/dashboard"
                     isLogged={isLogged}
                     onLogout={handleLogout}  
                 >
-                    {/* <Redirect to="/adverts"/> */}
                     <UserPrivate />
-                </PrivateRoute>
+                </PrivateRoute> */}
 
-                <Route path="/login">
-                    {({history, location}) => (
+                <Route path="/login" element={ 
                     <LoginPage 
                         onLogin={ handleLogin } 
-                        history={ history }/>
-                    )}
-                </Route>
+                        // history={ history }
+                    />
+                } />
 
-                <Route path="/404" component={ NotFound }/>
+                <Route path="/404" element={ <NotFound /> }/>
 
-                <Route path="*" element={ <Navigate to="/404" /> }></Route>
+                <Route path="*" element={ <Navigate to="/404" /> } />
 
             </Routes>
         </div>
