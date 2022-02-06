@@ -7,9 +7,9 @@ export const login = (credentials, remember) => {
     const url = `${authBaseUrl}/login`;
     return client
         .post(url, credentials)
-        .then(({ accessToken }) => {
-            configureClient({ accessToken })
-            storage.set('auth', accessToken)
+        .then(({ token }) => {
+            configureClient({ token })
+            storage.set('auth', token)
             if(remember){
                 for(const credential in credentials) {
                     storage.set(credential, credentials[credential]);

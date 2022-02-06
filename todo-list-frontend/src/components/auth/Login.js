@@ -1,12 +1,14 @@
 import React from 'react';
 import LoginForm from './LoginForm';
-import {login} from '../../dataServices/dataUsers/auth';
+import { login } from '../../dataServices/dataUsers/auth';
 import Loader from '../commons/Loader';
+import { useNavigate } from 'react-router-dom';
 
 import '../../assets/css/login.css';
 
-function LoginPage({onLogin, history, location}) {
+function LoginPage({ onLogin }) {
 
+    const navigation = useNavigate();
     const [error, setError] = React.useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
     const isLogged = React.useRef(false);
@@ -14,7 +16,7 @@ function LoginPage({onLogin, history, location}) {
     React.useEffect(() => {
         if(isLogged.current) {
             onLogin();
-            history.push('/');
+            navigation('/');
         }
     }, [isLogged.current, onLogin])
 
@@ -32,11 +34,11 @@ function LoginPage({onLogin, history, location}) {
     }
     return (
         <>
-            { isLoading && <Loader />}
+            { isLoading && <Loader /> }
             <div className="loginPage">
                 <h1 className="loginPage-title">Nodepop Login</h1>
-                <LoginForm onSubmit={handleSubmit} isLoading={isLoading}/>
-                { error && <div className="loginPage-error">{error.message}</div>}
+                <LoginForm onSubmit={ handleSubmit } isLoading={ isLoading }/>
+                { error && <div className="loginPage-error">{ error.message }</div>}
             </div>
         </>
     )

@@ -7,22 +7,22 @@ import storage from '../../utils/storage';
 
 import '../../assets/css/loginForm.css';
 
-const userEmail = storage.get('email');
+const userName = storage.get('username');
 const userPassword = storage.get('password');
 
-function LoginForm({onSubmit, isLoading}) {
+function LoginForm({ onSubmit, isLoading }) {
     const [credentials, setCredentials] = React.useState({
-        email:'',
+        username:'',
         password:''
     });
     const [remember, setRemember] = React.useState(false)
 
     React.useEffect(() => {     
-        if(userEmail && userPassword) {
-            const savedCredentials = {email:userEmail, password:userPassword};
+        if(userName && userPassword) {
+            const savedCredentials = {username:userName, password:userPassword};
             setCredentials(savedCredentials);
         } else {
-            setCredentials({email:'', password:''});
+            setCredentials({username:'', password:''});
         }
     }, [])
 
@@ -42,15 +42,15 @@ function LoginForm({onSubmit, isLoading}) {
         onSubmit(credentials, remember);
     }
 
-    const {email, password} = credentials
+    const {username, password} = credentials
     return (
         <form className="loginForm" onSubmit={handleSubmit}>
             <FormField
                 type="text"
-                name="email"
-                label="E-mail"
+                name="username"
+                label="Username"
                 className="loginForm-field"
-                value={email}
+                value={username}
                 onChange={handleChangeCredentials}
             />
             <FormField
@@ -65,7 +65,7 @@ function LoginForm({onSubmit, isLoading}) {
                 type="submit"
                 className="loginForm-submit"
                 variant="primary"
-                disabled={isLoading || !email || !password}
+                disabled={isLoading || !username || !password}
             >
             Log in
             </Button>
