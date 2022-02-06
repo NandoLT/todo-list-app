@@ -14,7 +14,7 @@ configureClient({ accesToken })
 ReactDOM.render(
   <React.StrictMode>
   <Router>
-    <App isLogged={ !!accesToken } />
+    <App isInitiallyLogged={ !!accesToken } />
   </Router>
   </React.StrictMode>,
   document.getElementById('root')

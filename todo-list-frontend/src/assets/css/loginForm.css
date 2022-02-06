@@ -1,0 +1,18 @@
+.loginForm-field {
+    padding: 10px 0;
+}
+
+.loginForm-submit {
+    margin-top: 10px;
+    width: 100%;
+}
+
+
+.loginForm-remember label {
+    border: none;
+    background-color: transparent;
+    flex-direction: row;
+}
+.loginForm-remember input {
+    width: auto;   
+}
